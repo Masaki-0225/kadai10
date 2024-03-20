@@ -22,4 +22,10 @@ public class EmployeeService {
         return employeeMapper.findByEmployeeId(id);
     }
 
+    public Employee insert(String name, int age, String mail) {
+        Employee employee = new Employee(name, age, mail);
+        employeeMapper.insert(employee);
+        return employee;
+    }
+
 }
