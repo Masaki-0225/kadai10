@@ -36,5 +36,4 @@ public class EmployeeController {
         EmployeeResponse body = new EmployeeResponse("created successfully!!!");
         return ResponseEntity.created(location).body(body);
     }
-//    登録処理の動作確認を行う
 }
