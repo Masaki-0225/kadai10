@@ -3,7 +3,6 @@ package com.kadai10.employee.entity;
 public class Employee {
     private Integer id;
     private String name;
-
     private int age;
     private String mail;
 
