@@ -5,6 +5,7 @@ import com.kadai10.employee.entity.Employee;
 import com.kadai10.employee.response.EmployeeResponse;
 import com.kadai10.employee.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<EmployeeResponse> insert(@RequestBody CreateForm form, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<EmployeeResponse> insert(@RequestBody @Validated CreateForm form, UriComponentsBuilder uriBuilder) {
         Employee employee = employeeService.insert(form.getName(), form.getAge(), form.getMail());
         URI location = uriBuilder.path("employee/{id}").buildAndExpand(employee.getId()).toUri();
         EmployeeResponse body = new EmployeeResponse("created successfully!!!");
