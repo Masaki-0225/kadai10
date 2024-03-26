@@ -28,4 +28,11 @@ public class EmployeeService {
         return employee;
     }
 
+    public Employee updateEmployee(int id, String name, int age, String mail) throws Exception {
+        Employee employee = new Employee(id, name, age, mail);
+        employeeMapper.update(employee);
+        return employee;
+    }
+
+
 }

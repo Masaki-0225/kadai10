@@ -2,11 +2,13 @@ package com.kadai10.employee.controller;
 
 import com.kadai10.employee.entity.CreateForm;
 import com.kadai10.employee.entity.Employee;
+import com.kadai10.employee.entity.UpdateForm;
 import com.kadai10.employee.response.EmployeeResponse;
 import com.kadai10.employee.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,5 +42,14 @@ public class EmployeeController {
         URI location = uriBuilder.path("employee/{id}").buildAndExpand(employee.getId()).toUri();
         EmployeeResponse body = new EmployeeResponse("created successfully!!!");
         return ResponseEntity.created(location).body(body);
+    }
+
+    @PatchMapping("/employee/{id}")
+    public ResponseEntity<EmployeeResponse> update(@RequestBody @Validated UpdateForm form,
+                                                   @PathVariable(value = "id") int id) throws Exception {
+        employeeService.updateEmployee(id, form.getName(), form.getAge(), form.getMail());
+        EmployeeResponse body = new EmployeeResponse("Employee was successfully updated");
+        return ResponseEntity.ok(body);
+
     }
 }
