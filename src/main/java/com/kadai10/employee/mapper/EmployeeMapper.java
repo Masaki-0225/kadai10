@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface EmployeeMapper {
@@ -16,7 +17,7 @@ public interface EmployeeMapper {
     List<Employee> getAll();
 
     @Select("select * from employee where id = #{id}")
-    Employee findByEmployeeId(int id);
+    Optional<Employee> findByEmployeeId(int id);
 
     @Insert("insert into employee(name,age,mail) values(#{name},#{age},#{mail})")
     @Options(useGeneratedKeys = true, keyProperty = "id")

@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class EmployeeController {
@@ -32,7 +33,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/{id}")
-    public Employee getEmployee(@PathVariable("id") int id) {
+    public Optional<Employee> getEmployee(@PathVariable("id") int id) {
         return employeeService.findById(id);
     }
 
@@ -46,7 +47,7 @@ public class EmployeeController {
 
     @PatchMapping("/employee/{id}")
     public ResponseEntity<EmployeeResponse> update(@RequestBody @Validated UpdateForm form,
-                                                   @PathVariable(value = "id") int id) throws Exception {
+                                                   @PathVariable(value = "id") int id) {
         employeeService.updateEmployee(id, form.getName(), form.getAge(), form.getMail());
         EmployeeResponse body = new EmployeeResponse("Employee was successfully updated");
         return ResponseEntity.ok(body);
