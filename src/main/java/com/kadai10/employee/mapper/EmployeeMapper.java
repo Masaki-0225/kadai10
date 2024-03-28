@@ -1,11 +1,7 @@
 package com.kadai10.employee.mapper;
 
 import com.kadai10.employee.entity.Employee;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,5 +21,8 @@ public interface EmployeeMapper {
 
     @Update("update employee set name = #{name},age = #{age}, mail = #{mail} where id = #{id} ")
     void update(Employee employee);
+
+    @Delete("delete from employee where id = #{id}")
+    void delete(int id);
 }
 
