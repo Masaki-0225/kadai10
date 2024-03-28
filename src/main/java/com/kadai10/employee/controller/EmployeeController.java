@@ -7,6 +7,7 @@ import com.kadai10.employee.response.EmployeeResponse;
 import com.kadai10.employee.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,5 +53,12 @@ public class EmployeeController {
         EmployeeResponse body = new EmployeeResponse("Employee was successfully updated");
         return ResponseEntity.ok(body);
 
+    }
+
+    @DeleteMapping("/employee/{id}")
+    public ResponseEntity<EmployeeResponse> delete(@PathVariable("id") int id) {
+        employeeService.deleteEmployee(id);
+        EmployeeResponse body = new EmployeeResponse("Employee was successfully delete");
+        return ResponseEntity.ok(body);
     }
 }
