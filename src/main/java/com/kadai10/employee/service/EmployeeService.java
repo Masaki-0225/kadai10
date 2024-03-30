@@ -36,5 +36,8 @@ public class EmployeeService {
         employeeMapper.update(employee);
     }
 
-
+    public void deleteEmployee(int id) {
+        Employee employee = employeeMapper.findByEmployeeId(id).orElseThrow(() -> new NotFoundException(id));
+        employeeMapper.delete(id);
+    }
 }
